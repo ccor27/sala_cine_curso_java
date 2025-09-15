@@ -17,6 +17,7 @@ public class Usuario {
 		
 	}//crear metodos modificables de acceso.
 
+	
 
 	public String getNombre() {
 		return nombre;
