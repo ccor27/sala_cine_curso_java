@@ -23,16 +23,17 @@ public class SalaDeCine {
 	}//No generar el valor. Porque solamente lo usamos para inicializar el arreglo de butacas.
 	
 
-	public boolean asignarButaca(Usuario usuario) {
+	public void asignarButacas(Usuario usuario, int n) {
 		 for (int i = 0; i < butacas.length; i++) {
 				for (int j = 0; j < butacas[i].length; j++) {
-					 if(butacas[i][j] == null) {
+					 if(butacas[i][j] == null && n > 0) {
 						butacas[i][j] = usuario;
-						return true;
+						n--; 
+					 }else {
+						 break;
 					 }
 				}
 			}
-		 return false;
 	}
 	
 	/**
