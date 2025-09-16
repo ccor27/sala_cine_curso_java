@@ -17,7 +17,13 @@ public class Usuario {
 		
 	}//crear metodos modificables de acceso.
 
+	
 
+	public void comprar(double cantidad) {
+		if(this.dinero >= cantidad) {
+			this.dinero = this.dinero - cantidad;
+		}
+	}
 	public String getNombre() {
 		return nombre;
 	}
