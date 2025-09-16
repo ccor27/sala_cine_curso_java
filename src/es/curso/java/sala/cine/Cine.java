@@ -52,16 +52,18 @@ public class Cine {
 	/**
 	 * Metodo para filtrar las salas por numero de asientos disponibles
 	 * 
-	 * @param asientos
 	 */
-	public void filtrarSalasPorNumeroAsientosDisponibles(int asientos) {
+	public boolean filtrarSalasPorNumeroAsientosDisponibles(int asientos) {
+		boolean result = false;
 		for (SalaDeCine salaDeCine : salas) {
 			if (salaDeCine != null && salaDeCine.numeroButacasVacias() >= asientos) {
+				result = true;
 				System.out.println(salaDeCine.getPelicula().getTitulo() + " (" + salaDeCine.getNombre() + ")" + " - "
 						+ salaDeCine.numeroButacasVacias() + " asientos disponibles");
 			}
 		}
 		System.out.println();
+		return result;
 	}
 
 	public void mostrarOcupacionPorSala() {
@@ -98,6 +100,10 @@ public class Cine {
 			return "Error: Sala no válida o número de butacas incorrecto.";
 		}
 
+		if(usuario.getEdad() < sala.getPelicula().getClasificacionPorEdad()) {
+			return "Error: El usuario no tiene la edad suficiente para la pelicula.";
+		}
+		
 		double precioButacas = sala.getPelicula().getPrecio() * numeroButacas;
 		
 		if (usuario.getDinero() >= precioButacas) {
