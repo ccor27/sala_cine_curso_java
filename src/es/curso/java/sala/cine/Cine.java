@@ -90,7 +90,6 @@ public class Cine {
 			}
 		}
 		return null;
-		
 	}
 
 	public String asignarButacasEnSala(String nombreSala, Usuario usuario, int numeroButacas) {
@@ -101,6 +100,10 @@ public class Cine {
 			return "Error: Sala no válida o número de butacas incorrecto.";
 		}
 
+		if(usuario.getEdad() < sala.getPelicula().getClasificacionPorEdad()) {
+			return "Error: El usuario no tiene la edad suficiente para la pelicula.";
+		}
+		
 		double precioButacas = sala.getPelicula().getPrecio() * numeroButacas;
 		
 		if (usuario.getDinero() >= precioButacas) {
