@@ -23,17 +23,27 @@ public class SalaDeCine {
 	}//No generar el valor. Porque solamente lo usamos para inicializar el arreglo de butacas.
 	
 
-	public void asignarButacas(Usuario usuario, int n) {
-		 for (int i = 0; i < butacas.length; i++) {
-				for (int j = 0; j < butacas[i].length; j++) {
-					 if(butacas[i][j] == null && n > 0) {
-						butacas[i][j] = usuario;
-						n--; 
-					 }else {
-						 break;
-					 }
-				}
-			}
+	public String asignarButacas(Usuario usuario, int n) {
+		String butacasAsignadas = "";
+		int butacasRestantes = n;
+		for (int i = 0; i < butacas.length; i++) {
+            for (int j = 0; j < butacas[i].length; j++) {
+                if (butacas[i][j] == null) {
+                    butacas[i][j] = usuario;
+                    butacasAsignadas +="[" + (i + 1) + "-" + (j + 1) + "] ";
+                    butacasRestantes--;
+                    ocupadas++;
+                    if (butacasRestantes == 0) {
+                        return butacasAsignadas; // Ya se asignaron todas las butacas
+                    }
+                }
+            }
+        }
+		
+		if(butacasRestantes > 0) {
+			return "Ops, parece que no hay la cantidad de sillas necesarias";
+        }
+        return null;
 	}
 	
 	/**
@@ -56,7 +66,7 @@ public class SalaDeCine {
 				            +"\nPelicula a proyectar: "+this.pelicula.getTitulo()
 							+ "\nNumero de asientos libres: "+numeroButacasVacias() 
 							+ "\nNumero de asientos ocupados: "+this.ocupadas
-							+"\n================================================");
+							+"\n================================================\n");
 	}
 	
 	/**
@@ -98,6 +108,7 @@ public class SalaDeCine {
 			System.out.println();
 		}
 		System.out.println("====================================================================================================");
+		System.out.println();
 	}
 	
 	public void mostrarSala() {
